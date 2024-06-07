@@ -9,14 +9,22 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
   const [userMutation, setUserMutation] = useState<UserMutation>({
     name: '',
     email: '',
-    activity: false,
+    activity: '',
     role: '',
   });
 
-  const changeUser = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeUser = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setUserMutation((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
+    }));
+  };
+
+  const changeActivity = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    setUserMutation((prev) => ({
+      ...prev,
+      activity: checked ? name : '',
     }));
   };
 
@@ -25,12 +33,13 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
 
     onSubmit({
       ...userMutation,
+      activity: userMutation.activity === 'yes',
     });
 
     setUserMutation({
       name: '',
       email: '',
-      activity: false,
+      activity: '',
       role: '',
     });
   };
@@ -63,28 +72,48 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
       <div className="form-group mb-4">
         <p className="mb-2">Activity</p>
         <div className="form-check">
-          <input name="activity" onChange={changeUser} className="checkbox form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-          <label className="form-check-label" htmlFor="form-check-input">
+          <input
+            name="yes"
+            onChange={changeActivity}
+            className="form-check-input"
+            type="checkbox"
+            checked={userMutation.activity === 'yes'}
+            id="activityYes"/>
+          <label className="form-check-label" htmlFor="activityYes">
             Yes
           </label>
         </div>
         <div className="form-check">
-          <input name="activity" onChange={changeUser} className="checkbox form-check-input" type="checkbox" value="" id="flexCheckChecked"/>
-          <label className="form-check-label" htmlFor="form-check-input">
+          <input
+            name="no"
+            onChange={changeActivity}
+            className="form-check-input"
+            type="checkbox"
+            checked={userMutation.activity === 'no'}
+            id="activityNo"/>
+          <label className="form-check-label" htmlFor="activityNo">
             No
           </label>
         </div>
       </div>
       <div className="form-group mb-4">
-        <select name="role" value={userMutation.role} className="form-select" aria-label="Default select example">
-          <option selected>Role</option>
-          <option>User</option>
-          <option>Editor</option>
-          <option>Admin</option>
+        <select
+          name="role"
+          value={userMutation.role}
+          onChange={changeUser}
+          className="form-select"
+          aria-label="Default select example"
+          required>
+          <option value="" disabled>Role</option>
+          <option value="user">User</option>
+          <option value="editor">Editor</option>
+          <option value="admin">Admin</option>
         </select>
       </div>
       <div className="d-grid gap-2">
-        <button className="btn btn-secondary" type="submit">Create</button>
+        <button className="btn btn-secondary" type="submit">
+          Create
+        </button>
       </div>
     </form>
   );

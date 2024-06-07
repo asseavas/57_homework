@@ -8,6 +8,6 @@ export interface User {
 export interface UserMutation {
   name: string;
   email: string;
-  activity: boolean;
+  activity: string;
   role: string;
 }

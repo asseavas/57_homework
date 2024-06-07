@@ -11,7 +11,7 @@ const UserItem: React.FC<Props> = ({user}) => {
         <ul className="list-group list-group-flush">
           <li className="list-group-item">Name: {user.name}</li>
           <li className="list-group-item">Email: {user.email}</li>
-          <li className="list-group-item">Activity: {user.activity}</li>
+          <li className="list-group-item">Activity: {user.activity ? 'Yes' : 'No'}</li>
           <li className="list-group-item">Role: {user.role}</li>
         </ul>
     </div>
