@@ -45,7 +45,7 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
   };
 
   return (
-    <form onSubmit={onFormSubmit} className="text-start">
+    <form onSubmit={onFormSubmit} className="text-start p-4 bg-body-secondary rounded shadow-sm">
       <h4 className="mb-5 text-center">User Form</h4>
       <div className="form-group mb-4">
         <label htmlFor="name">Name</label>
@@ -104,14 +104,14 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
           className="form-select"
           aria-label="Default select example"
           required>
-          <option value="" disabled>Role</option>
+          <option value="" disabled>Select role</option>
           <option value="user">User</option>
           <option value="editor">Editor</option>
           <option value="admin">Admin</option>
         </select>
       </div>
       <div className="d-grid gap-2">
-        <button className="btn btn-secondary" type="submit">
+        <button className="btn btn-secondary btn-block" type="submit">
           Create
         </button>
       </div>

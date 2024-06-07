@@ -8,7 +8,7 @@ interface Props {
 
 const Users: React.FC<Props> = ({users}) => {
   return (
-    <div className="">
+    <div className="p-4 bg-body-secondary rounded shadow-sm">
       <h4 className="mb-5">Users</h4>
       {users.map((user, index) => (
         <UserItem key={index} user={user} />

@@ -20,8 +20,8 @@ const App = () => {
         <div className="col-5">
           <UserForm onSubmit={addUser} />
         </div>
-        <div className="col-4 ">
-          <Users users={users}/>
+        <div className="col-5 ">
+          <Users users={users} />
         </div>
       </div>
     </div>
